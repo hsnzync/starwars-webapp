@@ -1,0 +1,32 @@
+.content-view {
+  margin: 150px auto 100px auto;
+  padding: 0 16px;
+  justify-content: flex-start;
+  display: flex;
+  .content {
+    max-width: calc(100vw - 70%);
+    padding: 0 50px;
+    .previous {
+      display: block;
+    }
+    h2 {
+      margin-bottom: 35px;
+    }
+    &-movies-wrapper {
+      margin: -15px;
+      .btn {
+        cursor: pointer;
+        transition: 0.4s;
+        margin: 15px;
+      }
+    }
+    ul {
+      padding: 0;
+      li {
+        border-left: 3px solid #eee;
+        padding: 5px 10px;
+        list-style: none;
+      }
+    }
+  }
+}

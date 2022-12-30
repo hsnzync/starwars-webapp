@@ -1,0 +1,96 @@
+<div class="content-view">
+  <div class="content" role="main">
+    <h2 *ngIf="isLoading; else elseBlock">Loading...</h2>
+    <ng-template #elseBlock>
+      <h2>Star Wars movies list</h2>
+    </ng-template>
+    <div class="content-movies-wrapper">
+      <button
+        class="btn"
+        [class]="
+          movie.title === movieDetails?.title ? 'btn-dark' : 'btn-secondary'
+        "
+        *ngFor="let movie of movies"
+        (click)="showMovieDetails(movie, movie.characters)"
+      >
+        {{ movie.title }}
+      </button>
+    </div>
+  </div>
+  <div class="content" *ngIf="movieDetails">
+    <h2>
+      <button
+        [disabled]="characterDetails"
+        class="btn btn-light previous"
+        (click)="previousClick('movie')"
+      >
+        Go back</button
+      >{{ movieDetails.title }}
+    </h2>
+    <ul>
+      <li>
+        <mark><strong>Opening</strong></mark>
+        {{ movieDetails.opening_crawl }}
+      </li>
+      <li>
+        <mark><strong>Director</strong></mark>
+        {{ movieDetails.director }}
+      </li>
+      <li>
+        <mark><strong>Producer</strong></mark>
+        {{ movieDetails.producer }}
+      </li>
+      <li>
+        <mark><strong>Release date</strong></mark>
+        {{ movieDetails.release_date }}
+      </li>
+      <ul>
+        <li>
+          <mark><strong>Movie characters</strong></mark>
+        </li>
+        <li *ngFor="let character of characters">
+          <button
+            class="btn btn-secondary"
+            (click)="showCharacterDetails(character)"
+          >
+            {{ character.name }}
+          </button>
+        </li>
+      </ul>
+    </ul>
+  </div>
+  <div class="content" *ngIf="characterDetails">
+    <h2>
+      <button
+        class="btn btn-light previous"
+        (click)="previousClick('character')"
+      >
+        Go back
+      </button>
+
+      <strong>{{ characterDetails.name }}</strong> in {{ movieDetails?.title }}
+    </h2>
+    <ul>
+      <li>
+        <h5>Gender:</h5>
+        {{ characterDetails.gender }}
+      </li>
+      <li>
+        <h5>Hair color:</h5>
+        {{ characterDetails.hair_color }}
+      </li>
+      <li>
+        <h5>Birth year:</h5>
+        {{ characterDetails.birth_year }}
+      </li>
+      <li>
+        <h5>Height:</h5>
+        {{ characterDetails.height }}
+      </li>
+      <li>
+        <h5>Mass:</h5>
+        {{ characterDetails.mass }}
+      </li>
+    </ul>
+  </div>
+</div>
